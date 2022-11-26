@@ -1,0 +1,17 @@
+.popup__profession {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  border: none;
+  margin: 26px 0 47px;
+  padding: 3px 1px 13px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  max-height: 14px;
+}
+
+@media screen and (max-width: 579px){
+  .popup__profession {
+    margin: 26px 0 44px;
+  }
+}

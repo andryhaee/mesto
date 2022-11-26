@@ -1,0 +1,16 @@
+.header {
+  position: relative;
+  margin: 0 auto;
+  max-width: 880px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  width: calc(100% - 38px);
+}
+
+@media screen and (max-width: 767px){
+  .header {
+    width: 100%;
+  }
+}
+
+
+

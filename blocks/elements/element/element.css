@@ -1,0 +1,8 @@
+.element {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  max-height: 361px;
+  }
