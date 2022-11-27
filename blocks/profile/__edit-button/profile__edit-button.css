@@ -6,18 +6,19 @@
   border: solid #fff 1px;
   margin-top: 8px;
   margin-left: 18px;
+  transition: opacity 0.5s ease;
 }
 
 .profile__edit-button:hover {
-  transition: opacity 0.5s ease;
   opacity: .6;
 }
 
 @media screen and (max-width: 767px){
   .profile__edit-button {
+    background: url(../../../images/Edit\ Button\ mobile.svg) no-repeat center;
     width: 18px;
     height: 18px;
-    margin-left: 10px;
-    margin-top: 4px;
+    margin-left: 11px;
+    margin-top: 2px;
   }
 }

@@ -7,10 +7,10 @@
   background: url(../../../images/close-icon.svg) no-repeat center;
   border: none;
   padding: 0;
+  transition: opacity 0.5s ease;
 }
 
 .popup__btn-close:hover{
-  transition: opacity 0.5s ease;
   opacity: .6;
   cursor: pointer;
 }
