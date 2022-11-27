@@ -13,7 +13,7 @@
 
 **Github PG**
 
-[Ссылка на проект Mesto](https://andryhaee.github.io/russian-travel/)
+* [Ссылка на проект Mesto](https://andryhaee.github.io/mesto/)
 
 **Figma**
 
