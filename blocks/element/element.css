@@ -1,9 +1,10 @@
 .element {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
   background: #fff;
-  max-height: 361px;
+  min-height: 361px;
   color: #000;
   }
