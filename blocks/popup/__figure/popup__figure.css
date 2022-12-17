@@ -1,4 +1,6 @@
 .popup__figure {
+  position: relative;
+  background: none;
   padding: 0;
   margin: 0;
 }
