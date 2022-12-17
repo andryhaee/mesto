@@ -6,7 +6,8 @@
   flex-direction: column;
   color: #000;
   padding: 34px 36px 37px;
-  min-width: 358px;
+  width: 430px;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 579px){
