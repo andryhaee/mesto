@@ -18,11 +18,11 @@
   opacity: .8;
 }
 
-@media screen and (max-width: 579px){
+@media screen and (max-width: 635px){
   .popup__btn-save {
     min-height: 46px;
     font-size: 14px;
     line-height: 17px;
-    margin: 44px 0 0;
+    margin: 15px 0 0;
   }
 }

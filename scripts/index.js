@@ -22,6 +22,22 @@ const popupImg = document.querySelector('.popup_menu_image');
 const popupContentImg = popupImg.querySelector('.popup__image');
 const popupContentCaption = popupImg.querySelector('.popup__caption');
 
+// Cброс ошибки в инпуте при открытии попапа
+const resetErrorInput = () => { 
+  const popupErrorInput = Array.from(document.querySelectorAll('.popup__input'));
+  popupErrorInput.forEach((errorinput) => {
+    errorinput.classList.remove('popup__input_type_error');
+  })
+}
+
+// Cброс ошибки в спане при открытии попапа
+const resetErrorSpan = () => { 
+  const popupErrorSpan = Array.from(document.querySelectorAll('.popup__error'));
+  popupErrorSpan.forEach((errorspan) => {
+    errorspan.textContent = '';
+  })
+}
+
 // Открытие попапа
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
@@ -41,18 +57,12 @@ const closePopupByKey = (evt) => {
   }
 }
 
-// Закрытие попапа при клике на оверлей
+// Закрытие попапа при клике на оверлей и при клике на крестик
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if(evt.target.classList.contains('popup_opened')) {
       closePopup(popup);
     }
-  });                
-});
-
-// Закрытие попапа при клике на крестик
-popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
     if(evt.target.classList.contains('popup__btn-close')) {
       closePopup(popup);
     }
@@ -61,25 +71,30 @@ popups.forEach((popup) => {
 
 // Открытие попапа Profile
 const openPopupProfile = () => {
-  openPopup(popupProfile);
   nameInput.value = profileName.textContent;
   professionInput.value = profileProfession.textContent;
+  openPopup(popupProfile);
+  // Сброс ошибок при открытии попапа
+  resetErrorInput();
+  resetErrorSpan();
 }
 
 const openPopupCard = () => {
-  openPopup(popupCard);
   //Обнуление полей ввода при открытии
   titleInput.value = '';
   linkInput.value = '';
+  openPopup(popupCard);
+  // Сброс ошибок при открытии попапа
+  resetErrorInput();
+  resetErrorSpan();
 }
 
 // Img zoom
-const zoomPicture = (evt) => {
+const zoomPicture = (card) => {
+  popupContentImg.src = card.link;
+  popupContentImg.alt = card.name;
+  popupContentCaption.textContent = card.name;
   openPopup(popupImg);
-  const imageName = evt.target.closest(".element").querySelector(".element__title").textContent;
-  popupContentImg.src = evt.target.src;
-  popupContentImg.alt = imageName;
-  popupContentCaption.textContent = imageName;
 }
 
 // Удаление карточки
@@ -93,12 +108,12 @@ const likeCard = (evt) => {
 }
 
 // Создание карточки
-const createCard = (item) => {
+const createCard = (card) => {
   const cardElement = cardTemplate.querySelector('.element').cloneNode('true');
-  cardElement.querySelector('.element__title').textContent = item.name;
+  cardElement.querySelector('.element__title').textContent = card.name;
   const photoElement = cardElement.querySelector('.element__photo');
-  photoElement.src = item.link;
-  photoElement.alt = item.name;
+  photoElement.src = card.link;
+  photoElement.alt = card.name;
   // Btn like
   const likeBtn = cardElement.querySelector('.element__like');
   likeBtn.addEventListener('click', likeCard);
@@ -106,7 +121,7 @@ const createCard = (item) => {
   const deleteBtn = cardElement.querySelector('.element__delete');
   deleteBtn.addEventListener('click', deleteCard);
   // Btn zoomImg
-  photoElement.addEventListener('click', zoomPicture);
+  photoElement.addEventListener('click', () => zoomPicture(card));
   // Возвращаем карточку
   return cardElement;
 }
@@ -120,7 +135,7 @@ const renderCard = (card) => {
 initialCards.forEach(renderCard);
 
 //Обработка отправки, введенных в попап Card, данных
-function formSubmitHandlerCard (evt) {
+function handleSubmitCard (evt) {
   evt.preventDefault();
   const newCardObject = {};
   newCardObject.name = titleInput.value;
@@ -130,7 +145,7 @@ function formSubmitHandlerCard (evt) {
 }
 
 //Обработка отправки, введенных в попап Profile, данных
-function formSubmitHandlerProfile (evt) {
+function handleSubmitProfile (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileProfession.textContent = professionInput.value;
@@ -140,16 +155,5 @@ function formSubmitHandlerProfile (evt) {
 // Обработчики событий
 popupBtnOpenProfile.addEventListener('click', openPopupProfile);
 popupBtnOpenCard.addEventListener('click', openPopupCard);
-formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
-formElementCard.addEventListener('submit', formSubmitHandlerCard);
-
-
-
-
-
-
-
-
-
-
-
+formElementProfile.addEventListener('submit', handleSubmitProfile);
+formElementCard.addEventListener('submit', handleSubmitCard);

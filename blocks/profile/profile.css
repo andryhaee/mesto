@@ -5,15 +5,10 @@
   margin: 40px auto 51px;
 }
 
-@media screen and (max-width: 767px){
-  .profile {
-    margin: 42px auto 36px;
-  }
-}
-
-@media screen and (max-width: 579px){
+@media screen and (max-width: 635px){
   .profile {
     flex-direction: column;
     gap: 32px;
+    margin: 42px auto 36px;
   }
 }
