@@ -34,26 +34,12 @@ export const config = ({
   errorClass: 'popup__error_visible'
 });
 
-export const popups = document.querySelectorAll('.popup');
 // попап профиль
-export const popupProfile = document.querySelector('.popup_menu_profile');
 export const popupBtnOpenProfile = document.querySelector('.profile__edit-button');
-export const formElementProfile = popupProfile.querySelector('.popup__content');
-export const nameInput = popupProfile.querySelector('.popup__input_value_name');
-export const professionInput = popupProfile.querySelector('.popup__input_value_profession');
-export const profileName = document.querySelector('.profile__title');
-export const profileProfession = document.querySelector('.profile__subtitle');
+export const nameInput = document.querySelector('.popup__input_value_name');
+export const professionInput = document.querySelector('.popup__input_value_profession');
 export const formProfile = document.querySelector('.profile-form');
 // попап Карточки
 export const popupCard = document.querySelector('.popup_menu_card');
 export const popupBtnOpenCard = document.querySelector('.profile__add-button');
-export const cardContainer = document.querySelector('.elements');
-export const formElementCard = popupCard.querySelector('.popup__content');
-export const titleInput = popupCard.querySelector('.popup__input_value_title');
-export const linkInput = popupCard.querySelector('.popup__input_value_link');
-export const popupBtnSave = popupCard.querySelector('.popup__btn-save');
 export const formCard = document.querySelector('.card-form');
-// попап Изображения(зум)
-export const popupImg = document.querySelector('.popup_menu_image');
-export const popupContentImg = popupImg.querySelector('.popup__image');
-export const popupContentCaption = popupImg.querySelector('.popup__caption');
