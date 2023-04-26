@@ -20,6 +20,7 @@
 .element__content{display:flex;gap:20px;justify-content:space-between;margin:25px 15px 25px 21px}
 .element__title{font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .element__like{background:url(87ed371465c7a6a1cd01.svg) no-repeat 50%;border:none;cursor:pointer;flex-shrink:0;height:19px;margin:5px 5px 0 0;transition:opacity .5s ease;width:22px}.element__like:hover{opacity:.6}
+.element__like-conteiner{align-items:center;display:flex;flex-direction:column}
 .element__like_active{background:url(e787eeb70bb65b7b453a.svg) no-repeat 50%}
 .element__delete{background:url(823b0cf1b0b7e9cb7cad.svg) no-repeat 50%;border:none;cursor:pointer;height:19px;margin:0;position:absolute;right:20px;top:20px;transition:opacity .5s ease;width:18px}.element__delete:hover{opacity:.6}
 .footer{margin:0 auto;max-width:880px;padding:67px 0 60px;position:relative}@media screen and (max-width:934px){.footer{max-width:581px}}@media screen and (max-width:635px){.footer{max-width:282px;padding:48px 0 36px}}
