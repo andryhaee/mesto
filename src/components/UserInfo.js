@@ -1,20 +1,23 @@
 class UserInfo {
-  constructor({ nameSelector, professionSelector }) {
-    this._name = document.querySelector(nameSelector);
-	  this._profession = document.querySelector(professionSelector);
-  };
-
+  constructor({ name, about, avatar }) {
+    this._name = document.querySelector(name);
+    this._about = document.querySelector(about);
+    this._avatar = document.querySelector(avatar);
+  }
+  
   getUserInfo() {
     return {
       name: this._name.textContent,
-      profession: this._profession.textContent
-    }
-  };
-
-  setUserInfo(name, profession) {
+      about: this._about.textContent
+    };
+  }
+  
+  setUserInfo({ name, about, avatar, _id }) {
     this._name.textContent = name;
-    this._profession.textContent = profession;
-  };
+    this._about.textContent = about;
+    this._avatar.src = avatar;
+    this.userId = _id;
+  }
 }
 
 export default UserInfo;
