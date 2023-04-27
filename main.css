@@ -17,9 +17,9 @@
 .elements{-moz-column-gap:17px;column-gap:17px;display:grid;grid-template-columns:repeat(auto-fit,282px);justify-content:center;margin:0;padding:0;row-gap:20px}
 .element{background:#fff;border-radius:10px;color:#000;display:flex;flex-direction:column;min-height:361px;overflow:hidden;position:relative}
 .element__photo{cursor:pointer;height:100%;max-height:282px;-o-object-fit:cover;object-fit:cover;width:100%}
-.element__content{align-items:center;display:flex;gap:20px;justify-content:space-between;margin:25px 15px auto 21px}
+.element__content{align-items:center;display:flex;gap:20px;justify-content:space-between;margin:25px 20px auto 21px}
 .element__title{font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.element__like{background:url(87ed371465c7a6a1cd01.svg) no-repeat 50%;border:none;cursor:pointer;flex-shrink:0;height:19px;margin:5px 5px 0 0;transition:opacity .5s ease;width:22px}.element__like:hover{opacity:.6}
+.element__like{background:url(87ed371465c7a6a1cd01.svg) no-repeat 50%;border:none;cursor:pointer;flex-shrink:0;height:19px;margin:0;transition:opacity .5s ease;width:22px}.element__like:hover{opacity:.6}
 .element__like-conteiner{align-items:center;display:flex;flex-direction:column}
 .element__like_active{background:url(e787eeb70bb65b7b453a.svg) no-repeat 50%}
 .element__delete{background:url(823b0cf1b0b7e9cb7cad.svg) no-repeat 50%;border:none;cursor:pointer;height:19px;margin:0;position:absolute;right:20px;top:20px;transition:opacity .5s ease;width:18px}.element__delete:hover{opacity:.6}
