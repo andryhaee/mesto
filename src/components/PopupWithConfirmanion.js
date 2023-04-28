@@ -1,12 +1,13 @@
 import Popup from './Popup.js'
 
-class PopupDelete extends Popup {
+class PopupWithConfirmanion extends Popup {
   constructor(popupSelector, handleFormDelete) {
     super(popupSelector);
 
     this._handleFormDelete = handleFormDelete;
     this._buttonDelete = this._popup.querySelector('.popup__btn-save');
     this._buttonDeleteText = this._buttonDelete.textContent;
+
   }
   
   renderLoading(isLoading, loadingText = "Удаление...") {
@@ -20,11 +21,15 @@ class PopupDelete extends Popup {
     }
   }
   
-  open(cardId, card) {
+  setEventListeners() {
+    super.setEventListeners();
+    this._buttonDelete.addEventListener("click", () => {this._handleFormDelete(this, this.cardId)});
+  };
+
+  open(card, cardId) {
     super.open();
-    this.cardId = cardId;
     this.card = card;
-    this._buttonDelete.addEventListener("click", this._handleFormDelete);
+    this.cardId = cardId;
   }
   
   close() {
@@ -33,4 +38,4 @@ class PopupDelete extends Popup {
   }
 }
 
-export default PopupDelete;
+export default PopupWithConfirmanion;

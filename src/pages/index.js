@@ -5,7 +5,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import PopupDelete from '../components/PopupDelete.js';
+import PopupWithConfirmanion from '../components/PopupWithConfirmanion.js';
 import { api } from '../components/Api';
 
 import { popupBtnOpenCard, popupBtnOpenProfile, config, formProfile, formCard, formAvatar, popupBtnOpenAvatar } from "../utils/constants.js"
@@ -26,7 +26,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .catch(console.log);
 
 function createCard(res) {
-  const card = new Card(userInfo.userId, res, '#card-template', (evt) => popupWithImage.open(evt), (cardId, card) => popupDelete.open(cardId, card), putLike, deleteLike);
+  const card = new Card(userInfo.userId, res, '#card-template', (evt) => popupWithImage.open(evt), (cardId, ard) => popupWithConfirmanion.open(cardId, ard), putLike, deleteLike);
   return card.generateCard();
 };
 
@@ -39,7 +39,7 @@ const сardList = new Section(
 const putLike = (card) => {
   api.putLike(card.getId())
     .then((res) => {
-      card._handleLikeButtonClick(res);
+      card.handleLikeButtonClick(res);
     })
     .catch(console.log);
 };
@@ -47,23 +47,39 @@ const putLike = (card) => {
 const deleteLike = (card) => {
   api.deleteLike(card.getId())
     .then((res) => {
-      card._handleLikeButtonClick(res);
+      card.handleLikeButtonClick(res);
     })
     .catch(console.log);
 };
 
-// Попап профиля
+const deleteCard = (param) => {
+  popupWithConfirmanion.renderLoading(true);
+  api.deleteCard(param.cardId)
+    .then(() => {
+      param.card.deleteCard();
+      popupWithConfirmanion.close();
+    })
+    .catch(console.log)
+    .finally(() => {
+      popupWithConfirmanion.renderLoading(false);
+    });
+  }
+
+// Попап удаления карточек
+const popupWithConfirmanion = new PopupWithConfirmanion('.popup_delete', deleteCard);
+
+// Попап редактирования профиля
 const formPopupEditProfile = new PopupWithForm('.popup_menu_profile', (item) => {
   formPopupEditProfile.renderLoading(true);
   api.patchUserInfo(item)
     .then((data) => {
 	  userInfo.setUserInfo(data);
+    formPopupEditProfile.close();
     })
+    .catch(console.log)
     .finally(() => {
-	  formPopupEditProfile.renderLoading(false);
-      
-    })
-    .catch(console.log);
+      formPopupEditProfile.renderLoading(false);
+    });
 });
 
 // Открытие попапа профиля
@@ -74,14 +90,13 @@ popupBtnOpenProfile.addEventListener('click', () => {
   formEditValidator.resetValidation();
 });
 
-
 // Попап добавления карточек
 const formPopupAddCard = new PopupWithForm('.popup_menu_card', (item) => {
   formPopupAddCard.renderLoading(true);
   api.postNewCard(item)
     .then((res) => {
-	  formPopupAddCard.close();
       сardList.addItemNew(createCard(res));
+      formPopupAddCard.close();
     })
     .catch(console.log)
     .finally(() => {
@@ -96,33 +111,18 @@ popupBtnOpenCard.addEventListener('click', () => {
   formAddValidator.resetValidation();
 });
 
-// Попап удаления карточек
-const popupDelete = new PopupDelete('.popup_delete', () => {
-  popupDelete.renderLoading(true);
-  api.deleteCard(popupDelete.cardId)
-    .then(() => {
-      popupDelete.card.remove();
-      popupDelete.close();
-    })
-    .finally(() => {
-      popupDelete.renderLoading(false);
-    })
-    .catch(console.log);
-  }
-);
-
 // Попап аватар
 const formPopupEditAvatar = new PopupWithForm('.popup_menu_avatar', ({ avatar }) => {
   formPopupEditAvatar.renderLoading(true);
   api.patchUserAvatar({ avatar })
     .then(res => {
 	  userInfo.setUserInfo(res);
-      formPopupEditAvatar.close();
+    formPopupEditAvatar.close();
     })
+    .catch(console.log)
     .finally(() => {
-	  formPopupEditAvatar.renderLoading(false);
-    })
-    .catch(console.log);
+      formPopupEditAvatar.renderLoading(false);
+    });
 });
 
 // Открытие попапа аватар
@@ -135,7 +135,7 @@ popupBtnOpenAvatar.addEventListener('click', () => {
 formPopupEditProfile.setEventListeners();
 formPopupAddCard.setEventListeners();
 popupWithImage.setEventListeners();
-popupDelete.setEventListeners();
+popupWithConfirmanion.setEventListeners();
 formPopupEditAvatar.setEventListeners();
 
 // создаем экземпляр класса FormValidator
